@@ -86,7 +86,7 @@ $categoriesList = $category->getAll();
                 </select>
 
                 <label for="qty">Số lượng</label>
-                <input type="number" id="qty" name="qty" value="<?= $productUpdate['qty'] ?>">
+                <input type="number" id="qty" name="qty" value="<?= $productUpdate['qty'] ?>" onchange="update(this)" min="1">
 
                 <label for="des">Mô tả</label>
                 <textarea name="des" id="des" cols="30" rows="10"><?= $productUpdate['des'] ?></textarea>
@@ -98,7 +98,7 @@ $categoriesList = $category->getAll();
     </div>
     
     <footer>
-        <p class="copyright">STORENOW @ 2021</p>
+        <p class="copyright">LMHT @ 2022</p>
     </footer>
 </body>
 

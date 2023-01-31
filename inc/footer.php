@@ -12,5 +12,5 @@
                 <a href="productList.php">Sản Phẩm</a>
             </li>
         </ul>
-        <p class="copyright">STORENOW @ 2021</p>
+        <p class="copyright">LMHT @ 2022</p>
     </footer>

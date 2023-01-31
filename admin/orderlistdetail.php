@@ -83,7 +83,7 @@ $order_result = $order->getById($result[0]['orderId']);
     </div>
     
     <footer>
-        <p class="copyright">STORENOW @ 2021</p>
+        <p class="copyright">LMHT @ 2022</p>
     </footer>
 </body>
 

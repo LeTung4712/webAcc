@@ -11,6 +11,8 @@ $product = new product();
 $list = $product->getProductsByCateId((isset($_GET['page']) ? $_GET['page'] : 1), (isset($_GET['cateId']) ? $_GET['cateId'] : 2));
 $pageCount = $product->getCountPagingClient((isset($_GET['cateId']) ? $_GET['cateId'] : 2));
 
+$listSale = mysqli_fetch_all($product->getSaleProducts(), MYSQLI_ASSOC);
+
 $categories = new categories();
 $categoriesList = $categories->getAll();
 ?>
@@ -113,7 +115,41 @@ $categoriesList = $categories->getAll();
                     </div>
                 </div>
             <?php }
-        } else { ?>
+        }
+        else if ($listSale) {
+            foreach ($listSale as $key => $value) { ?>
+                <div class="card">
+                    <div class="imgBx">
+                        <a href="detail.php?id=<?= $value['id'] ?>"><img src="admin/uploads/<?= $value['image'] ?>" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="productName">
+                            <a href="detail.php?id=<?= $value['id'] ?>">
+                                <h3><?= $value['name'] ?></h3>
+                            </a>
+                        </div>
+                        <div>
+                            Đã bán: <?= $value['soldCount'] ?>
+                        </div>
+                        <div class="original-price">
+                            <?php
+                            if ($value['promotionPrice'] < $value['originalPrice']) { ?>
+                                Giá gốc: <del><?= number_format($value['originalPrice'], 0, '', ',') ?>VND</del>
+                            <?php } else { ?>
+                                <p>.</p>
+                            <?php } ?>
+                        </div>
+                        <div class="price">
+                            Giá bán: <?= number_format($value['promotionPrice'], 0, '', ',') ?>VND
+                        </div>
+                        <div class="action">
+                            <a class="add-cart" href="add_cart.php?id=<?= $value['id'] ?>">Thêm vào giỏ</a>
+                            <a class="detail" href="detail.php?id=<?= $value['id'] ?>">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+        }  else { ?>
             <h3>Không có sản phẩm nào...</h3>
         <?php  }
         ?>

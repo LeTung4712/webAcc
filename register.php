@@ -25,9 +25,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <?php 
-        include('inc/header.php'); 
-    ?>
+    <header>
+    <label class="logo">LMHT</label>
+        <ul>
+            <li><a href="index.php">Trang chủ</a></li>
+            <li><a href="productList.php">Sản phẩm</a></li>
+            <li><a href="register.php" id="signup" class="active">Đăng ký</a></li>
+            <li><a href="login.php" id="signin">Đăng nhập</a></li>
+            <li><a href="order.php" id="order">Đơn hàng</a></li>
+            <li>
+                <a href="checkout.html">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span class="sumItem">
+                        0
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </header>
     <section class="banner"></section>
     <div class="featuredProducts">
         <h1>Đăng ký</h1>

@@ -54,10 +54,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `status`) VALUES
-(2, 'KIM CƯƠNG', 1),
-(4, 'VÀNG', 1),
-(5, 'BẠC', 1),
-(6, 'BACH KIM', 1);
+(2, 'Mô Hình Size Lớn', 1),
+(3, 'Mô Hình Size Vừa', 1),
+(4, 'Mô Hình Size Nhỏ', 1),
+(5, 'Móc Khóa ', 1),
+(6, 'Quần Áo', 1);
 
 -- --------------------------------------------------------
 
@@ -72,14 +73,6 @@ CREATE TABLE `orders` (
   `receivedDate` date DEFAULT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`id`, `userId`, `createdDate`, `receivedDate`, `status`) VALUES
-(39, 31, '2021-12-07', '2021-12-07', 'Complete'),
-(40, 1, '2023-01-30', '2023-02-02', 'Processed');
 
 -- --------------------------------------------------------
 
@@ -96,20 +89,6 @@ CREATE TABLE `order_details` (
   `productName` varchar(100) NOT NULL,
   `productImage` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `order_details`
---
-
-INSERT INTO `order_details` (`id`, `orderId`, `productId`, `qty`, `productPrice`, `productName`, `productImage`) VALUES
-(36, 39, 7, 2, '3190000', 'GUITAR YAMAHA CX40', 'd3ac08c33e.jpg'),
-(37, 39, 4, 1, '749000000', 'Boston GP-156', 'a30bcd79d7.jpg'),
-(38, 39, 8, 3, '19000000', 'Taylor 114E', 'cb50eef0d8.jpg'),
-(39, 39, 9, 4, '4200000', 'Takamine D2D', '758ded2800.jpg'),
-(40, 40, 2, 1, '220000000', 'Kohler & Campbell KIG50D', '0.jpg'),
-(41, 40, 9, 1, '4200000', 'Takamine D2D', '758ded2800.jpg');
-
--- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `products`
@@ -197,8 +176,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `fullname`, `dob`, `password`, `role_id`, `status`, `address`, `isConfirmed`, `captcha`) VALUES
 (1, 'admin@gmail.com', 'Le Thanh Tung', '2023-01-10', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, '', 1, ''),
-(31, 'lapankhuongnguyen@gmail.com', 'khuong nguyen', '2021-12-06', 'c4ca4238a0b923820dcc509a6f75849b', 2, 1, 'CanTho', 1, '56661'),
-(33, 'iamrobotdiy@gmail.com', 'tung', '2023-01-30', '827ccb0eea8a706c4c34a16891f84e7b', 2, 1, 'ha noi', 1, '65460');
+(30, 'iamrobotdiy@gmail.com', 'tung', '2023-01-30', '827ccb0eea8a706c4c34a16891f84e7b', 2, 1, 'ha noi', 1, '65460');
 
 --
 -- Chỉ mục cho các bảng đã đổ

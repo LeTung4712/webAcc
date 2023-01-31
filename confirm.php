@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <header>
-        <label class="logo">STORENOW</label>
+        <label class="logo">LMHT</label>
         <ul>
             <li><a href="index.php">Trang chủ</a></li>
             <li><a href="productList.php">Sản phẩm</a></li>
