@@ -18,6 +18,7 @@ $categoriesList = $category->getAll();
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 

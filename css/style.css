@@ -390,6 +390,11 @@ input[type=number]{
   width: 100px;
 }
 
+.search{
+  padding-top: 80px;
+
+}
+
 .category{
   margin-left: 100px;
   width: 200px;

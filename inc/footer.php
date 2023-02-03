@@ -9,7 +9,7 @@
                 <a href="./">Trang Chủ</a>
             </li>
             <li>
-                <a href="productList.php">Sản Phẩm</a>
+                <a href="productListSale.php">Sản Phẩm</a>
             </li>
         </ul>
         <p class="copyright">LMHT @ 2022</p>

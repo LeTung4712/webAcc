@@ -26,11 +26,11 @@ class product
         $qty = $data['qty'];
 
         // Check image and move to upload folder
-        $file_name = $_FILES['image']['name'];
-        $file_temp = $_FILES['image']['tmp_name'];
+        $file_name = $_FILES['image']['name']; //Tên gốc của tệp trên máy khách.
+        $file_temp = $_FILES['image']['tmp_name'];//Tên tệp tạm thời của tệp mà tệp đã tải lên được lưu trữ trên máy chủ.
 
-        $div = explode('.', $file_name);
-        $file_ext = strtolower(end($div));
+        $div = explode('.', $file_name); //Ngắt một chuỗi thành một mảng
+        $file_ext = strtolower(end($div)); //Tạo một chuỗi chữ thường từ phần tư cuối mảng div - lấy định dạng ảnh
         $unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
         $uploaded_image = "uploads/" . $unique_image;
 
@@ -96,6 +96,22 @@ class product
         return false;
     }
 
+    public function getSearchByNameProducts($search)
+    {
+        $query =
+            "SELECT *
+			 FROM products
+			 WHERE products.name LIKE '%".$search."%'
+             order by products.soldCount DESC
+             LIMIT 8";
+        $mysqli_result = $this->db->select($query);
+        if ($mysqli_result) {
+            $result = mysqli_fetch_all($mysqli_result, MYSQLI_ASSOC);
+            return $result;
+        }
+        return false;
+    }
+
     public function getFeaturedProducts()
     {
         $query =
@@ -108,6 +124,17 @@ class product
         return $result;
     }
 
+    public function getSaleProducts()
+    {
+        $query =
+            "SELECT *
+			 FROM products
+			 WHERE products.status = 1
+             order by products.promotionPrice DESC
+             LIMIT 8";
+        $result = $this->db->select($query);
+        return $result;
+    }
 
     public function getProductsByCateId($page = 1, $cateId, $total = 8)
     {
@@ -118,7 +145,7 @@ class product
         $query =
             "SELECT *
 			 FROM products
-			 WHERE status = 1 AND cateId = $cateId
+			 WHERE status = 1 AND cateId = $cateId 
              LIMIT $tmp,$total";
         $mysqli_result = $this->db->select($query);
         if ($mysqli_result) {

@@ -28,9 +28,17 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
     <?php 
         include('inc/header.php'); 
     ?>
+    <div class="search">
+            <form action="search.php" method="get">
+                Search: <input type="text" name="search" placeholder="Nhập tên sản phẩm"/>
+                <input type="submit" name="ok" value="search" />
+            </form>
+    </div>
+
     <section class="banner"></section>
+    
     <div class="featuredProducts">
-        <h1>Sản phẩm nổi bật</h1>
+        <h1>Sản phẩm bán chạy</h1>
     </div>
     <div class="container">
         <?php
@@ -59,15 +67,6 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
                 <div class="price">
                     Giá bán: <?= number_format($value['promotionPrice'], 0, '', ',') ?>VND
                 </div>
-                <!-- <div class="rating">
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div> -->
                 <div class="action">
                     <a class="add-cart" href="add_cart.php?id=<?= $value['id'] ?>">Thêm vào giỏ</a>
                     <a class="detail" href="detail.php?id=<?= $value['id'] ?>">Xem chi tiết</a>

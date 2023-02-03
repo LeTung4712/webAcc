@@ -1,5 +1,6 @@
 <header>
         <label class="logo">LMHT</label>
+        
         <ul>
             <li><a href="index.php" class="active">Trang chủ</a></li>
             <li><a href="productList.php">Sản phẩm</a></li>
