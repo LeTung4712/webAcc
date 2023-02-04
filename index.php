@@ -28,12 +28,8 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
     <?php 
         include('inc/header.php'); 
     ?>
-    <div class="search">
-            <form action="search.php" method="get">
-                Search: <input type="text" name="search" placeholder="Nhập tên sản phẩm"/>
-                <input type="submit" name="ok" value="search" />
-            </form>
-    </div>
+
+    
 
     <section class="banner"></section>
     

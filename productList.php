@@ -31,10 +31,16 @@ $categoriesList = $categories->getAll();
 </head>
 
 <body>
-    <header>
+<header>
         <label class="logo">LMHT</label>
+        <div class="search">
+            <form action="search.php" method="get">
+                <input type="text" name="search" placeholder="Nhập tên sản phẩm">
+                <input type="submit" name="ok" value="search" >
+            </form>
+        </div>
         <ul>
-            <li><a href="index.php">Trang chủ</a></li>
+            <li><a href="index.php" >Trang chủ</a></li>
             <li><a href="productList.php" class="active">Sản phẩm</a></li>
             <?php
             if (isset($_SESSION['user']) && $_SESSION['user']) { ?>

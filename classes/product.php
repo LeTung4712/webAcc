@@ -101,7 +101,7 @@ class product
         $query =
             "SELECT *
 			 FROM products
-			 WHERE products.name LIKE '%".$search."%'
+			 WHERE products.name LIKE '%".$search."%' OR products.des LIKE '%".$search."%'
              order by products.soldCount DESC
              LIMIT 8";
         $mysqli_result = $this->db->select($query);
