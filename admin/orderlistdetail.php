@@ -71,7 +71,7 @@ $order_result = $order->getById($result[0]['orderId']);
                 ?>
             </table>
             <?php
-            if ($order_result['status'] == 'Processing') { ?>
+            if ($order_result['status'] == 'Đang xử lý') { ?>
                 <a href="processed_order.php?orderId=<?= $_GET['orderId'] ?>">Xác nhận</a>
             <?php }
             ?>
@@ -79,12 +79,10 @@ $order_result = $order->getById($result[0]['orderId']);
             <h3>Chưa có đơn hàng nào đang xử lý</h3>
         <?php }
         ?>
-    </div>
-    </div>
+    </div>  
+
     
-    <footer>
-        <p class="copyright">LMHT @ 2022</p>
-    </footer>
 </body>
+
 
 </html>

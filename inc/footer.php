@@ -12,5 +12,5 @@
                 <a href="productListSale.php">Sản Phẩm</a>
             </li>
         </ul>
-        <p class="copyright">LMHT @ 2022</p>
+        <p class="copyright">Bản quyền thuộc về © Nhóm 11.</p>
     </footer>

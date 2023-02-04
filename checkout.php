@@ -28,24 +28,34 @@ $userInfo = $user->get();
 </head>
 
 <body>
-    <header>
-        <label class="logo" id="logo">LMHT</label>
+<header>
+        <label class="logo">
+            <a href="index.php">
+                <img  src="images/logo.jpg"  alt="logo">
+            </a>          
+        </label>
+        <div class="search">
+            <form action="search.php" method="get">
+                <input type="text" name="search" placeholder="Nhập tên sản phẩm">
+                <input type="submit" name="ok" value="search" >
+            </form>
+        </div>
         <ul>
-            <li><a href="index.php">Trang chủ</a></li>
-            <li><a href="productList.php">Sản phẩm</a></li>
+            <li><a href="index.php" >Trang chủ</a></li>
+            <li><a href="productList.php" >Sản phẩm</a></li>
             <?php
             if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
-            <li><a href="logout.php" id="signin">Đăng xuất</a></li>
+                <li><a href="logout.php" id="signin">Đăng xuất</a></li>
             <?php } else { ?>
-            <li><a href="register.php" id="signup">Đăng ký</a></li>
-            <li><a href="login.php" id="signin">Đăng nhập</a></li>
+                <li><a href="register.php" id="signup">Đăng ký</a></li>
+                <li><a href="login.php" id="signin">Đăng nhập</a></li>
             <?php } ?>
             <li><a href="order.php" id="order">Đơn hàng</a></li>
             <li>
                 <a href="checkout.php" class="active">
                     <i class="fa fa-shopping-bag"></i>
-                    <span class="sumItem" id="totalQtyHeader">
-                        <?= $totalQty['total'] ?>
+                    <span class="sumItem">
+                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
                     </span>
                 </a>
             </li>
@@ -105,7 +115,7 @@ $userInfo = $user->get();
                     Địa chỉ nhận hàng: <b><?= $userInfo['address'] ?></b>
                 </div>
                 <div class="buy-btn">
-                    <a href="add_order.php">Tiến hành đặt hàng</a>
+                    <a href="add_order.php?id=<?= $value['productId'] ?>">Tiến hành đặt hàng</a>
                 </div>
             </div>
         </div>

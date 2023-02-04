@@ -19,11 +19,17 @@ class order
     {
         $this->db = new Database();
     }
-    public function add()
+    public function add($productId)
     {
         $userId = Session::get('userId');
+
+        $product = new product();
+        $productCheck = $product->getProductbyId($productId);
+            if (0 >= intval($productCheck['qty'])) {
+                return 'out of stock';
+            }
         //Add new order
-        $sql_insert_cart = "INSERT INTO orders VALUES(NULL,'$userId','" . date('y/m/d') . "',NULL,'Processing' )";
+        $sql_insert_cart = "INSERT INTO orders VALUES(NULL,'$userId','" . date('y/m/d') . "',NULL,'Đang xử lý' )";
         $insert_cart = $this->db->insert($sql_insert_cart);
         if (!$insert_cart) {
             return false;
@@ -101,7 +107,7 @@ class order
 
     public function getProcessingOrder()
     {
-        $query = "SELECT * FROM orders WHERE status = 'Processing'";
+        $query = "SELECT * FROM orders WHERE status = 'Đang xử lý'";
         $mysqli_result = $this->db->select($query);
         if ($mysqli_result) {
             $result = mysqli_fetch_all($this->db->select($query), MYSQLI_ASSOC);
@@ -112,7 +118,7 @@ class order
 
     public function getProcessedOrder()
     {
-        $query = "SELECT * FROM orders WHERE status = 'Processed'";
+        $query = "SELECT * FROM orders WHERE status = 'Đã xử lý'";
         $mysqli_result = $this->db->select($query);
         if ($mysqli_result) {
             $result = mysqli_fetch_all($this->db->select($query), MYSQLI_ASSOC);
@@ -123,7 +129,7 @@ class order
 
     public function getDeliveringOrder()
     {
-        $query = "SELECT * FROM orders WHERE status = 'Delivering'";
+        $query = "SELECT * FROM orders WHERE status = 'Đang giao hàng'";
         $mysqli_result = $this->db->select($query);
         if ($mysqli_result) {
             $result = mysqli_fetch_all($this->db->select($query), MYSQLI_ASSOC);
@@ -134,7 +140,7 @@ class order
 
     public function getCompleteOrder()
     {
-        $query = "SELECT * FROM orders WHERE status = 'Complete'";
+        $query = "SELECT * FROM orders WHERE status = 'Đã giao hàng'";
         $mysqli_result = $this->db->select($query);
         if ($mysqli_result) {
             $result = mysqli_fetch_all($this->db->select($query), MYSQLI_ASSOC);
@@ -145,7 +151,7 @@ class order
 
     public function processedOrder($id)
     {
-        $query = "UPDATE orders SET status = 'Processed' WHERE id = $id";
+        $query = "UPDATE orders SET status = 'Đã xử lý' WHERE id = $id";
         $mysqli_result = $this->db->update($query);
         if ($mysqli_result) {
             if ($this->updateReceivedDateOrder($id)) {
@@ -157,7 +163,7 @@ class order
 
     public function deliveringOrder($id)
     {
-        $query = "UPDATE orders SET status = 'Delivering' WHERE id = $id";
+        $query = "UPDATE orders SET status = 'Đang giao hàng' WHERE id = $id";
         $mysqli_result = $this->db->update($query);
         if ($mysqli_result) {
             return true;
@@ -167,7 +173,7 @@ class order
 
     public function completeOrder($id)
     {
-        $query = "UPDATE orders SET status = 'Complete', receivedDate = '" . date('y/m/d') . "' WHERE id = $id";
+        $query = "UPDATE orders SET status = 'Đã giao hàng', receivedDate = '" . date('y/m/d') . "' WHERE id = $id";
         $mysqli_result = $this->db->update($query);
         if ($mysqli_result) {
             return true;

@@ -23,9 +23,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <?php 
-        include('inc/header.php'); 
-    ?>
+<header>
+        <label class="logo">
+            <a href="index.php">
+                <img  src="images/logo.jpg"  alt="logo">
+            </a>          
+        </label>
+        <div class="search">
+            <form action="search.php" method="get">
+                <input type="text" name="search" placeholder="Nhập tên sản phẩm">
+                <input type="submit" name="ok" value="search" >
+            </form>
+        </div>
+        <ul>
+            <li><a href="index.php">Trang chủ</a></li>
+            <li><a href="productList.php">Sản phẩm</a></li>
+            <li><a href="register.php" id="signup" >Đăng ký</a></li>
+            <li><a href="login.php" id="signin" class="active">Đăng nhập</a></li>
+            <li><a href="order.php" id="order">Đơn hàng</a></li>
+            <li>
+                <a href="checkout.html">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span class="sumItem">
+                        0
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </header>
     <section class="banner"></section>
     <div class="featuredProducts">
         <h1>Đăng nhập</h1>

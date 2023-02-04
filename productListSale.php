@@ -25,9 +25,39 @@ $list = mysqli_fetch_all($product->getSaleProducts(), MYSQLI_ASSOC);
 </head>
 
 <body>
-    <?php 
-        include('inc/header.php'); 
-    ?>
+    <header>
+        <label class="logo">
+            <a href="index.php">
+                <img  src="images/logo.jpg"  alt="logo">
+            </a>          
+        </label>
+        <div class="search">
+            <form action="search.php" method="get">
+                <input type="text" name="search" placeholder="Nhập tên sản phẩm">
+                <input type="submit" name="ok" value="search" >
+            </form>
+        </div>
+        <ul>
+            <li><a href="index.php" >Trang chủ</a></li>
+            <li><a href="productList.php" class="active">Sản phẩm</a></li>
+            <?php
+            if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
+                <li><a href="logout.php" id="signin">Đăng xuất</a></li>
+            <?php } else { ?>
+                <li><a href="register.php" id="signup">Đăng ký</a></li>
+                <li><a href="login.php" id="signin">Đăng nhập</a></li>
+            <?php } ?>
+            <li><a href="order.php" id="order">Đơn hàng</a></li>
+            <li>
+                <a href="checkout.php">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span class="sumItem">
+                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </header>
     <section class="banner"></section>
     <div class="featuredProducts">
         <h1>Giá từ cao xuống thấp</h1>

@@ -27,11 +27,21 @@ $result = $order->getOrderByUser();
 </head>
 
 <body>
-    <header>
-        <label class="logo">LMHT</label>
+<header>
+        <label class="logo">
+            <a href="index.php">
+                <img  src="images/logo.jpg"  alt="logo">
+            </a>          
+        </label>
+        <div class="search">
+            <form action="search.php" method="get">
+                <input type="text" name="search" placeholder="Nhập tên sản phẩm">
+                <input type="submit" name="ok" value="search" >
+            </form>
+        </div>
         <ul>
-            <li><a href="index.php">Trang chủ</a></li>
-            <li><a href="productList.php">Sản phẩm</a></li>
+            <li><a href="index.php" >Trang chủ</a></li>
+            <li><a href="productList.php" >Sản phẩm</a></li>
             <?php
             if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
                 <li><a href="logout.php" id="signin">Đăng xuất</a></li>
@@ -44,7 +54,7 @@ $result = $order->getOrderByUser();
                 <a href="checkout.php">
                     <i class="fa fa-shopping-bag"></i>
                     <span class="sumItem">
-                        <?= $totalQty['total'] ?>
+                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
                     </span>
                 </a>
             </li>
@@ -71,9 +81,9 @@ $result = $order->getOrderByUser();
                         <td><?= $count++ ?></td>
                         <td><?= $value['id'] ?></td>
                         <td><?= $value['createdDate'] ?></td>
-                        <td><?= ($value['status'] != "Processing") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Complete" && $value['status'] != "Processing") ? "(Dự kiến)" : "" ?> </td>
+                        <td><?= ($value['status'] != "Đang xử lý") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Đã giao hàng" && $value['status'] != "Đang xử lý") ? "(Dự kiến)" : "" ?> </td>
                         <?php
-                        if ($value['status'] == 'Delivering') { ?>
+                        if ($value['status'] == 'Đang giao hàng') { ?>
                             <td>
                                 <a href="complete_order.php?orderId=<?= $value['id'] ?>">Đang giao (Click vào để xác nhận đã nhận)</a>
                             </td>

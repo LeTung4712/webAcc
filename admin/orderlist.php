@@ -49,14 +49,14 @@ $completeOrderList = $order->getCompleteOrder();
     <div class="container">
         <!-- Tab links -->
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'Processing')">Đang xử lý</button>
-            <button class="tablinks" onclick="openTab(event, 'Processed')">Đã xử lý</button>
-            <button class="tablinks" onclick="openTab(event, 'Delivering')">Đang giao hàng</button>
-            <button class="tablinks" onclick="openTab(event, 'Complete')">Đã hoàn thành</button>
+            <button class="tablinks" onclick="openTab(event, 'Đang xử lý')">Đang xử lý</button>
+            <button class="tablinks" onclick="openTab(event, 'Đã xử lý')">Đã xử lý</button>
+            <button class="tablinks" onclick="openTab(event, 'Đang giao hàng')">Đang giao hàng</button>
+            <button class="tablinks" onclick="openTab(event, 'Đã giao hàng')">Đã hoàn thành</button>
         </div>
 
         <!-- Tab content -->
-        <div id="Processing" class="tabcontent">
+        <div id="Đang xử lý" class="tabcontent">
             <?php
             if ($processingOrderList) { ?>
                 <table class="list">
@@ -74,7 +74,7 @@ $completeOrderList = $order->getCompleteOrder();
                             <td><?= $count++ ?></td>
                             <td><?= $value['id'] ?></td>
                             <td><?= $value['createdDate'] ?></td>
-                            <td><?= ($value['status'] != "Processing") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Complete" && $value['status'] != "Processing") ? "(Dự kiến)" : "" ?> </td>
+                            <td><?= ($value['status'] != "Đang xử lý") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Đã giao hàng" && $value['status'] != "Đang xử lý") ? "(Dự kiến)" : "" ?> </td>
                             <td><?= $value['status'] ?></td>
                             <td>
                                 <a href="orderlistdetail.php?orderId=<?= $value['id'] ?>">Chi tiết</a>
@@ -89,7 +89,7 @@ $completeOrderList = $order->getCompleteOrder();
             ?>
         </div>
 
-        <div id="Processed" class="tabcontent">
+        <div id="Đã xử lý" class="tabcontent">
             <?php
             if ($processedOrderList) { ?>
                 <table class="list">
@@ -107,7 +107,7 @@ $completeOrderList = $order->getCompleteOrder();
                             <td><?= $count++ ?></td>
                             <td><?= $value['id'] ?></td>
                             <td><?= $value['createdDate'] ?></td>
-                            <td><?= ($value['status'] != "Processing") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Complete" && $value['status'] != "Processing") ? "(Dự kiến)" : "" ?> </td>
+                            <td><?= ($value['status'] != "Đang xử lý") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Đã giao hàng" && $value['status'] != "Đang xử lý") ? "(Dự kiến)" : "" ?> </td>
                             <td><?= $value['status'] ?></td>
                             <td>
                                 <a href="delivering_order.php?orderId=<?= $value['id'] ?>">Giao hàng</a>
@@ -122,7 +122,7 @@ $completeOrderList = $order->getCompleteOrder();
             ?>
         </div>
 
-        <div id="Delivering" class="tabcontent">
+        <div id="Đang giao hàng" class="tabcontent">
             <?php
             if ($deliveringOrderList) { ?>
                 <table class="list">
@@ -140,7 +140,7 @@ $completeOrderList = $order->getCompleteOrder();
                             <td><?= $count++ ?></td>
                             <td><?= $value['id'] ?></td>
                             <td><?= $value['createdDate'] ?></td>
-                            <td><?= ($value['status'] != "Processing") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Complete" && $value['status'] != "Processing") ? "(Dự kiến)" : "" ?> </td>
+                            <td><?= ($value['status'] != "Đang xử lý") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Đã giao hàng" && $value['status'] != "Đang xử lý") ? "(Dự kiến)" : "" ?> </td>
                             <td><?= $value['status'] ?></td>
                             <td>
                                 <a href="orderlistdetail.php?orderId=<?= $value['id'] ?>">Chi tiết</a>
@@ -155,7 +155,7 @@ $completeOrderList = $order->getCompleteOrder();
             ?>
         </div>
 
-        <div id="Complete" class="tabcontent">
+        <div id="Đã giao hàng" class="tabcontent">
             <?php
             if ($completeOrderList) { ?>
                 <table class="list">
@@ -173,7 +173,7 @@ $completeOrderList = $order->getCompleteOrder();
                             <td><?= $count++ ?></td>
                             <td><?= $value['id'] ?></td>
                             <td><?= $value['createdDate'] ?></td>
-                            <td><?= ($value['status'] != "Processing") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Complete" && $value['status'] != "Processing") ? "(Dự kiến)" : "" ?> </td>
+                            <td><?= ($value['status'] != "Đang xử lý") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?=  ($value['status'] != "Đã giao hàng" && $value['status'] != "Đang xử lý") ? "(Dự kiến)" : "" ?> </td>
                             <td><?= $value['status'] ?></td>
                             <td>
                                 <a href="orderlistdetail.php?orderId=<?= $value['id'] ?>">Chi tiết</a>
@@ -191,7 +191,7 @@ $completeOrderList = $order->getCompleteOrder();
     </div>
     
     <footer>
-        <p class="copyright">LMHT @ 2022</p>
+        <p class="copyright">Bản quyền thuộc về © Nhóm 11.</p>
     </footer>
 </body>
 <script type="text/javascript">

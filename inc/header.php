@@ -1,5 +1,9 @@
 <header>
-        <label class="logo">LMHT</label>
+        <label class="logo">
+            <a href="index.php">
+                <img  src="images/logo.jpg"  alt="logo">
+            </a>          
+        </label>
         <div class="search">
             <form action="search.php" method="get">
                 <input type="text" name="search" placeholder="Nhập tên sản phẩm">

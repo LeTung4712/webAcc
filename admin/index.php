@@ -55,7 +55,7 @@ if ($role_id == 1) {
                 <a href="#">About</a>
             </li>
         </ul>
-        <p class="copyright">LMHT @ 2022</p>
+        <p class="copyright">Bản quyền thuộc về © Nhóm 11.</p>
     </footer>
 </body>
 

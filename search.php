@@ -41,11 +41,11 @@ if (isset($_REQUEST['ok']))
 
 <body>
     <?php include('inc/header.php')?>
-    
+
     <section class="banner"></section>
 
     <div class="featuredProducts">
-        <h1>Sản phẩm tìm kiếm cho từ khóa <?php echo $_GET['search']; ?></h1>
+        <h1>Sản phẩm tìm kiếm cho từ khóa '<?php echo $_GET['search']; ?>'</h1>
     </div>
     
     <div class="container">
