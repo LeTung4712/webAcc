@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <script src="https://use.fontawesome.com/2145adbb48.js"></script>
     <script src="https://kit.fontawesome.com/a42aeb5b72.js" crossorigin="anonymous"></script>
     <title>Đăng ký</title>
@@ -34,7 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="search">
             <form action="search.php" method="get">
                 <input type="text" name="search" placeholder="Nhập tên sản phẩm">
-                <input type="submit" name="ok" value="search" >
+                <button name="ok" value="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </form>
         </div>
         <ul>

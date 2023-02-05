@@ -14,7 +14,7 @@ if (isset($_REQUEST['ok']))
  
             // Nếu $search rỗng thì báo lỗi, tức là người dùng chưa nhập liệu mà đã nhấn submit.
             if (empty($search)) {
-                echo "Yeu cau nhap du lieu vao o trong";
+                echo '<script type="text/javascript">alert("Nhập tên cần tìm"); history.back();</script>';
             } 
             else
             {
@@ -33,14 +33,48 @@ if (isset($_REQUEST['ok']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <script src="https://use.fontawesome.com/2145adbb48.js"></script>
     <script src="https://kit.fontawesome.com/a42aeb5b72.js" crossorigin="anonymous"></script>
     <title>Trang chủ</title>
 </head>
 
 <body>
-    <?php include('inc/header.php')?>
+    <header>
+        <label class="logo">
+            <a href="index.php">
+                <img  src="images/logo.jpg"  alt="logo">
+            </a>          
+        </label>
+        <div class="search">
+            <form action="search.php" method="get">
+                <input type="text" name="search" placeholder="Nhập tên sản phẩm">
+                <button name="ok" value="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+        <ul>
+            <li><a href="index.php" class="active">Trang chủ</a></li>
+            <li><a href="productList.php">Sản phẩm</a></li>
+            <?php
+            if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
+                <li><a href="logout.php" id="signin">Đăng xuất</a></li>
+            <?php } else { ?>
+                <li><a href="register.php" id="signup">Đăng ký</a></li>
+                <li><a href="login.php" id="signin">Đăng nhập</a></li>
+            <?php } ?>
+            <li><a href="order.php" id="order">Đơn hàng</a></li>
+            <li>
+                <a href="checkout.php">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span class="sumItem">
+                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </header>
 
     <section class="banner"></section>
 
@@ -57,7 +91,7 @@ if (isset($_REQUEST['ok']))
             </div>
             <div class="content">
                 <div class="productName">
-                    <a href="detail.php?id=<?= $value['id'] ?>">
+                    <a href="detail.php?id=<?= $value['id'] ?>" title="<?= $value['name']?>">
                         <h3><?= $value['name'] ?></h3>
                     </a>
                 </div>

@@ -112,13 +112,18 @@ class product
         return false;
     }
 
-    public function getFeaturedProducts()
+    public function getFeaturedProducts($page = 1, $total = 8)
     {
+        if ($page <= 0) {
+            $page = 1;
+        }
+        $tmp = ($page - 1) * $total;
         $query =
             "SELECT *
 			 FROM products
 			 WHERE products.status = 1
-             order by products.soldCount DESC";
+             order by products.soldCount DESC 
+             limit $tmp,$total";
         $result = $this->db->select($query);
         return $result;
     }

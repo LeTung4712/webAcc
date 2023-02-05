@@ -7,7 +7,9 @@
         <div class="search">
             <form action="search.php" method="get">
                 <input type="text" name="search" placeholder="Nhập tên sản phẩm">
-                <input type="submit" name="ok" value="search" >
+                <button name="ok" value="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </form>
         </div>
         <ul>
