@@ -54,7 +54,7 @@ if (!$result) {
             <?php }
             ?>
             <div class="des">
-                    <ul>
+                <ul>
                     <li>Đã bán: <?= $result['soldCount'] ?></li>
                     <li>Số lượng còn lại: <?= $result['qty'] ?></li>
                 </ul>
@@ -62,6 +62,9 @@ if (!$result) {
             </div>
             <div class="add-cart-single">
                 <a href="add_cart.php?id=<?= $result['id'] ?>">Thêm vào giỏ</a>
+            </div>
+            <div class="buy-now">
+                <a href="buy_now.php?id=<?= $result['id'] ?>">Mua hàng ngay</a>
             </div>
         </div>
     </div>

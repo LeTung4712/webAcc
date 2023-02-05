@@ -314,6 +314,34 @@ footer .copyright{
   transition: 0.5s;
 }
 
+.buy-now {
+  width: 170px;
+  height: 40px;
+  line-height: 40px;
+  background-color: yellowgreen;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: 0.5s;
+}
+
+.buy-now a{
+  color: white;
+}
+
+.buy-now a:hover{
+  transition: 0.5s;
+  background-color: goldenrod;
+  cursor: pointer;
+}
+
+.buy-now:hover{
+  transition: 0.5s;
+  background-color: goldenrod;
+  cursor: pointer;
+}
+
 .add-cart-single a{
   color: white;
 }
