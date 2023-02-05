@@ -74,10 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="password" id="repassword" name="repassword" required placeholder="Nhập lại mật khẩu..." oninput="check(this)">
 
                 <label for="address">Địa chỉ</label>
-                <textarea name="address" id="address" cols="30" rows="5" required></textarea>
+                <textarea name="address" id="address" cols="30" rows="5" placeholder="Cũng là địa chỉ nhận hàng " required></textarea>
 
                 <label for="dob">Ngày sinh</label>
-                <input type="date" name="dob" id="dob" required>
+                <input type="date" name="dob" id="dob" required>com
 
                 <input type="submit" value="Đăng ký" name="submit">
             </form>

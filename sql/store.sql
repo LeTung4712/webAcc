@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th1 30, 2023 lúc 02:14 PM
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th2 04, 2023 lúc 10:56 AM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `instrumentstore`
+-- Cơ sở dữ liệu: `store`
 --
 
 -- --------------------------------------------------------
@@ -57,8 +57,7 @@ INSERT INTO `categories` (`id`, `name`, `status`) VALUES
 (2, 'Mô Hình Size Lớn', 1),
 (3, 'Mô Hình Size Vừa', 1),
 (4, 'Mô Hình Size Nhỏ', 1),
-(5, 'Móc Khóa ', 1),
-(6, 'Quần Áo', 1);
+(5, 'Phụ kiện', 1);
 
 -- --------------------------------------------------------
 
@@ -90,6 +89,8 @@ CREATE TABLE `order_details` (
   `productImage` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
 -- Cấu trúc bảng cho bảng `products`
 --
@@ -114,23 +115,23 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`, `createdBy`, `createdDate`, `cateId`, `qty`, `des`, `status`, `soldCount`) VALUES
-(2, 'Kohler & Campbell KIG50D', '233000000', '220000000', '0.jpg', 1, '0000-00-00', 2, 95, 'Với kích thước linh hoạt, giúp người chơi dễ dàng bố trí phù hợp cho mọi không gian. Giờ đây, người chơi sẽ không còn lo ngại với diện tích không gian chật hẹp. Từ phòng khách, sảnh nhà hàng, khách sạn,.. hay bất cứ đâu Kohler & Campbell KiG50D sẽ góp phần làm nổi bật không gian thêm phần sang trọng.', 1, 5),
-(3, 'Kawai ND-21', '90500000', '85000000', '7.jpg', 1, '0000-00-00', 2, 9, 'Đàn Piano Kawai ND-21 hiện thân cho vẻ đẹp của một cây Piano Acoustic ở phân khúc giá rẻ. Khoác bên ngoài vẻ đẹp sang trọng của một cây đàn upright piano.', 1, 1),
-(4, 'Boston GP-156', '749000000', '749000000', '8.jpg', 1, '0000-00-00', 2, 19, 'Đàn piano Boston là một thương hiệu con của hãng Piano lừng danh Steinway & Sons, mang cùng một tiêu chuẩn xuất sắc của tất cả các công cụ được thiết kế bởi hãng này. GP-156 PE được thừa hưởng những thiết kế ưu việt của thương hiệu Steinway, mang âm sắc cổ điện với thiết kế tinh tế, đẹp và hiện đại.', 1, 1),
-(5, 'Kohler & Campbell J310B', '98000000', '90000000', '5.jpg', 1, '0000-00-00', 2, 8, 'Công ty Công nghiệp Kohler & Campbell, Inc đã được thành lập vào năm 1896 tại New York bởi 2 nhà đồng thời sáng lập là Charles Kohler và John Campbell. Campbell là một thợ máy đã phát minh ra một số máy chế biến gỗ và sắt và sau đó đã áp dụng vào việc chế tạo đàn piano.', 1, 2),
-(6, 'Essex EUP-123EA1', '230000000', '230000000', '2.jpg', 1, '0000-00-00', 2, 7, 'Piano Essex EUP-123E nổi bật với phong cách cổ điển, sang trọng. Cây đàn được thiết kế bởi thương hiệu Steinway & Sons, phối hợp với nhà thiết kế đồ nội thất nổi tiếng William Faber tạo nên sự đẳng cấp, tinh tế của cây đàn.aah', 1, 3),
-(7, 'GUITAR YAMAHA CX40', '3190000', '3190000', '6.jpg', 1, '2021-12-07', 4, 8, 'Đàn Classic Guitar Yamaha CX40', 1, 2),
-(8, 'Taylor 114E', '19000000', '19000000', '3.jpg', 1, '2021-12-07', 4, 7, 'Đàn guitar Taylor 114E là một dòng sản phẩm acoustic thuộc dòng series 1 của taylor với thiết kế độc đáo đó chính là khớp nối cần đàn và sử dụng gỗ sitka spruce tạo âm thanh vô cùng trong trẻo, sống động, giúp người chơi có thể cảm nhận được tốt hơn và đây cũng là ưu điểm nổi bật tạo lên sự thành công cho thương hiệu Taylor.', 1, 3),
-(9, 'Takamine D2D', '4200000', '4200000', '1.jpg', 1, '2021-12-07', 4, 5, 'Đàn guitar Takamine D2D là sản phẩm nổi bật của thương hiệu Takamine Nhật Bản và được rất nhiều tín đồ săn đón trong thời gian gần đây. Không những mang đến một thiết kế dáng đàn đẹp mắt, vừa vặn với mọi dáng người mà âm thanh tuyệt vời mà bạn không thể chê vào đâu được.', 1, 5),
-(10, 'Takamine ED2DCNAT', '6350000', '6200000', '9.jpg', 1, '2021-12-07', 4, 10, 'Đàn guitar Takamine ED2DCNAT là một sản phẩm được thiết kế hoàn hảo đến từng chi tiết với mặt đàn được làm từ gỗ Spruce, mặt sau và hông đàn được làm từ gỗ Mahogany, cùng hệ thống điện tử khuếch đại âm thanh để truyền tải âm thanh đến cho người nghe một cách rõ ràng và chân thật nhất.\r\n\r\nChắc hẳn, đây chính là cây đàn guitar tuyệt vời dành riên cho bạn, bất kể bạn là người mới học hay là người chơi đàn guitar có nhiều kinh nghiệm.', 1, 0),
-(11, 'TAYLOR 150E 12 String', '21100000', '21100000', '10.jpg', 1, '2021-12-07', 4, 10, 'Đàn Guitar Taylor 150E 12 String là cây đàn acoustic sở hữu 12 dây đàn đã tạo ra âm thanh tốt, chuẩn xác, thiết kế độc đáo, tinh tế cùng với việc cân bằng ánh sáng octave sắc nét đã tạo ra tông màu tươi sáng, tốt và rõ ràng. Đây chắc hẳn là những tính năng nổi bật đã tạo nên sự khác biệt trong các loại đàn khác.', 1, 0),
-(12, 'TAYLOR 214CE DLX', '34700000', '34700000', '11.jpg', 1, '2021-12-07', 4, 10, 'Đàn guitar Taylor 214CE DLX sở hữu thiết kế độc đáo với đường nét trên cơ thể mượt mà mang đến âm thanh trung thực, giai điệu rõ ràng và sử dụng chất liệu gỗ rosewood đem lại giai điệu tuyệt vời trong một loại nhạc cụ tuyệt đẹp.', 1, 0),
-(13, 'Roland BK-9', '31000000', '31000000', '12.jpg', 1, '2021-12-07', 5, 20, 'Đàn organ Roland BK-9 là công cụ hàng đầu mới trong loạt dòng BK nổi tiếng, mang lại âm thanh giật gân, nhịp điệu hàng đầu, và một lựa chọn đáng kinh ngạc của các tính năng cao cấp. Bạn có một thế giới âm nhạc dưới sự kiểm soát của ngón tay, với một lựa chọn âm thanh tuyệt vời - bao gồm âm thanh SuperNATURAL nổi tiếng của Roland - và một loạt các giai điệu đệm hoàn toàn remastered trong gần như mọi thể loại âm nhạc, từ cổ điển đến hiện đại.', 1, 0),
-(14, 'Roland E-A7', '29000000', '29000000', '13.jpg', 1, '2021-12-07', 5, 15, 'Đàn organ Roland E-A7 là cây đàn cao cấp dùng để biểu diễn hoặc đi show với hơn 1.500 âm sắc nhạc cụ đến từ khắp nơi trên thế giới, 156 nút chuyên dụng để truy cập tức thì vào chức năng cho hiệu suất trình diễn mạnh mẽ.', 1, 0),
-(15, 'Roland FA-06', '29500000', '29500000', '14.jpg', 1, '2021-12-07', 5, 10, 'Đàn organ Roland FA-06 là một sản phẩm cao cấp đến từ Roland với âm thanh tốt và nhiều tính năng hấp dẫn hỗ trợ người sử dụng để trình diễn trên sân khấu một cách xuất sắc nhất. Ngoài ra với thiết kế nhỏ gọn nên dễ dàng mang đi di chuyển để biểu diễn mà không lo cồng kềnh hư hỏng.', 1, 0),
-(16, 'Roland FA-08', '44300000', '44300000', '15.jpg', 1, '2021-12-07', 5, 10, 'Đàn organ Roland FA-08 sở hữu đầy đủ chức năng của một Music Workstation với thiết kế chắc chắn, tính linh hoat cao cùng với hiệu ứng Studio chất lượng cao, điều khiển thời gian thực, hỗ trợ chức năng Sampling và phát lại âm thanh ngay lập tức từ 16 mặt pad có trang bị đèn tín hiệu.', 1, 0),
-(17, 'Roland AXSYNTH', '25100000', '25100000', '16.jpg', 1, '2021-12-07', 5, 20, 'Đàn organ Roland AXSYNTH mang một phong cách mới của Roland, với việc sử dụng âm thanh mạnh mẽ, phong cách solo mới nhất của Roland và có thể đeo lên vai thực hiện phần trình diễn được hiệu quả hơn trên sân khấu.', 1, 0),
-(18, 'Roland GAIA SH-01', '14300000', '14300000', '17.jpg', 1, '2021-12-07', 5, 5, 'Đàn organ Roland GAIA SH-01 cung cấp cho bạn một tấn hiệu ứng (reverb, biến dạng, lông tơ, tai nạn bit, flanger, phaser, pitch shifter, tăng thấp và trì hoãn) để khám phá âm những giới hạn âm thanh tuyệt vời, với những nút tính năng điều chỉnh dễ dàng mang lại sự sáng tạo vô biên của người chơi khi sử dụng cây đàn organ này.', 1, 0);
+(2, 'Mô hình Rồng Ngàn Tuổi 13cm – Elder Dragon XL Figure', '1800000', '1500000', '1.png', 1, '2023-01-08', 3, 20, 'Cao: 5.1 in / 13 cm\r\nRộng: 5.1 in / 13 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 9),
+(3, 'Mô hình Ahri K/DA 24cm – Hãng Apex Toys x Riot Games', '5000000', '4700000', '2.png', 1, '2023-01-08', 2, 10, 'Cao: 24 cm\r\nRộng: 29 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Apex Toy x Riot Games', 1, 4),
+(4, 'Mô hình LMHT Set Vệ Binh Tinh Tú 1- Star Guardian Team Minis Set 1', '2000000', '1990000', '3.png', 1, '2023-01-08', 4, 20, 'Cao khoảng: 6.4 – 7.6 cm\r\nChiều Rộng từ: 3.8 – 5.1 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 12),
+(5, 'Mô hình LMHT Set Yordle – Yordle Team Minis Set [Lulu, Teemo, Ziggs, Tristana, Veigar]', '1300000', '1000000', '4.png', 1, '2023-01-08', 4, 20, 'Chiều cao: 2,5 – 3,0 in / 6,4 – 7,6 cm\r\nChiều rộng: 1,5 – 2,0 in / 3,8 – 5,1 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 17),
+(6, 'Mô hình Teemo Figure', '2500000', '2300000', '5.png', 1, '2023-01-08', 3, 30, 'Chiều cao: 4.5 in / 11.4 cm\r\nChiều rộng: 3.6 in / 9.2 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 15),
+(7, 'Mô hình Viego Unlocked Statue 28cm', '3300000', '2800000', '6.png', 1, '2023-01-08', 2, 15, 'Chiều cao: 28.5cm\r\nChiều rộng:16cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 3),
+(8, 'Mô hình Yuumi Figure 11.5cm', '1400000', '1300000', '7.png', 1, '2023-01-08', 3, 40, 'Chiều cao: 4,5 in / 11,5 cm\r\nChiều rộng: 3,1 in / 8,0 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 28),
+(9, 'Mô hình Morderkaiser XL Figure Có Đèn LED 13.5cm', '1990000', '1500000', '8.png', 1, '2023-01-08', 3, 20, 'Cao: 13.5 cm\r\nRộng: 11.5 cm\r\nCó đèn LED ở phần mắt và base\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 6),
+(10, 'Mô hình Garen Unlocked Statue 28cm', '2900000', '2750000', '9.png', 1, '2023-01-08', 2, 20, 'Chiều cao: 27.8 cm\r\nChiều rộng: 20 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 14),
+(11, 'Mô hình Corki Corgi Figure 12.5cm\r\n', '1800000', '1700000', '10.png', 1, '2023-01-08', 3, 20, 'Cao: 12.5 cm\r\nRộng: 11.2 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 8),
+(12, 'Mô hình Zed Unlocked Statue 24cm', '7800000', '6500000', '11.png', 1, '2023-01-08', 2, 30, 'Cao: 23 cm\r\nRộng: 24 cm\r\nChất liệu: PVC/ABS (nhựa cao cấp)\r\nHãng sản xuất: Riot Games', 1, 19),
+(13, 'Star Guardian Ina Stacker Rings', '3100000', '2800000', '12.png', 1, '2023-01-08', 5, 10, 'Chất liệu: Bạc Sterling mạ vàng 14K\r\nKích thước: 5 – 6 – 7 – 8 – 9 – 10\r\nKích thước: 21mm x 15mm\r\nHãng sản xuất: League of Legends X RockLove', 1, 3),
+(14, 'Star Guardian Soraka Wand Pendant', '4000000', '3600000', '13.png', 1, '2023-01-08', 5, 10, 'Chất liệu: bạc sterling mạ vàng 14K\r\nTinh thể: Zirconia khối\r\nChuỗi: Chuỗi dây chuyền có thể điều chỉnh 18 đến 20 inch\r\nKích thước: 26mm x 18mm\r\nHãng sản xuất: League of Legends X RockLove', 1, 5),
+(15, 'Bàn Phím Logitech G412 x LoL Star Guardian [Limited]', '2700000', '2600000', '14.png', 1, '2023-01-08', 5, 20, 'Trọng lượng: 650 g\r\nĐộ dài dây: 1,8 m\r\nMũ phím PBT\r\nLớp vỏ trên cùng bằng nhôm\r\nGiao thức USB: USB 2.0\r\nLED: Có', 1, 12),
+(16, 'Tai Nghe Không Dây Logitech G435 x LoL Star Guardian [Limited]', '3500000', '3200000', '15.png', 1, '2023-01-08', 5, 20, 'Trọng lượng siêu nhẹ, chỉ 165 gram\r\nPhạm vi hoạt động: 10m\r\nThơi lượng pin lên tới 18 giờ\r\nMàng loa 40mm thế hệ mới cho âm thanh tuyệt vời\r\nHỗ trợ 2 kết nối không dây: LightSpeed và Bluetooth\r\nHỗ trợ âm thanh vòm Dolby Atmos, Tempest 3D AudioTech và Windows Sonic Spatial Sound\r\nHỗ trợ đa nền tảng: Windows, các thiết bị di động (Bluetooth), hỗ trợ cả PS4, PS5', 1, 17),
+(17, 'Miếng lót chuột LMHT Kai’sa x Akali VBTT size XL', '1000000', '960000', '16.png', 1, '2023-01-08', 5, 30, 'Kích thước: 70×40\r\nTrọng lượng: 600g\r\nChất liệu: Vải Thun\r\nCông nghệ in cao cấp\r\nBo viền 2 đường may chắc chắn\r\nĐế cao su chống trượt\r\nHãng sản xuất: Riot Games', 1, 21),
+(18, 'Pad chuột LMHT kỉ niệm 10 năm LCK', '1500000', '1300000', '17.png', 1, '2023-01-08', 5, 20, 'Kích thước: 80×30\r\nĐộ dầy: 3mm\r\nCloth Spandex Print\r\nHai đường may, chống sờn mép\r\nĐế cao su chống trượt', 1, 11);
 
 -- --------------------------------------------------------
 

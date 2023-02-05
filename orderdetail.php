@@ -27,9 +27,19 @@ $result = $orderDetails->getOrderDetails($_GET['orderId']);
 
 <body>
     <header>
-        <label class="logo">LMHT</label>
+        <label class="logo">
+            <a href="index.php">
+                <img  src="images/logo.jpg"  alt="logo">
+            </a>          
+        </label>
+        <div class="search">
+            <form action="search.php" method="get">
+                <input type="text" name="search" placeholder="Nhập tên sản phẩm">
+                <input type="submit" name="ok" value="search" >
+            </form>
+        </div>
         <ul>
-            <li><a href="index.php">Trang chủ</a></li>
+            <li><a href="index.php" class="active">Trang chủ</a></li>
             <li><a href="productList.php">Sản phẩm</a></li>
             <?php
             if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
@@ -38,12 +48,12 @@ $result = $orderDetails->getOrderDetails($_GET['orderId']);
                 <li><a href="register.php" id="signup">Đăng ký</a></li>
                 <li><a href="login.php" id="signin">Đăng nhập</a></li>
             <?php } ?>
-            <li><a href="order.php" id="order" class="active">Đơn hàng</a></li>
+            <li><a href="order.php" id="order">Đơn hàng</a></li>
             <li>
                 <a href="checkout.php">
                     <i class="fa fa-shopping-bag"></i>
                     <span class="sumItem">
-                        <?= $totalQty['total'] ?>
+                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
                     </span>
                 </a>
             </li>

@@ -75,9 +75,10 @@ $list = mysqli_fetch_all($product->getSaleProducts(), MYSQLI_ASSOC);
                         <h3><?= $value['name'] ?></h3>
                     </a>
                 </div>
-                <div>
-                    Đã bán: <?= $value['soldCount'] ?>
-                </div>
+                <ul>
+                    <li>Đã bán: <?= $value['soldCount'] ?></li>
+                    <li>Số lượng còn lại: <?= $value['qty'] ?></li>
+                </ul>
                 <div class="original-price">
                     <?php
                         if ($value['promotionPrice'] < $value['originalPrice']) { ?>

@@ -8,6 +8,8 @@ $totalQty = $cart->getTotalQtyByUserId();
 
 $product = new product();
 $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
+$pageCount = $product->getCountPaging();
+
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +30,9 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
     <?php 
         include('inc/header.php'); 
     ?>
- 
+
     <section class="banner"></section>
-    
+
     <div class="featuredProducts">
         <h1>Sản phẩm bán chạy</h1>
     </div>
@@ -38,7 +40,7 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
         <?php
         foreach ($list as $key => $value) { ?>
         <div class="card">
-            <div class="imgBx" >
+            <div class="imgBx">
                 <a href="detail.php?id=<?= $value['id'] ?>"><img src="admin/uploads/<?= $value['image'] ?>" alt=""></a>
             </div>
             <div class="content">
@@ -67,10 +69,32 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
                     <a class="detail" href="detail.php?id=<?= $value['id'] ?>">Xem chi tiết</a>
                 </div>
             </div>
+
         </div>
         <?php }
         ?>
     </div>
+    <div class="pagination">
+            <a href="index.php?page=<?= (isset($_GET['page'])) ? (($_GET['page'] <= 1) ? 1 : $_GET['page'] - 1) : 1 ?>">&laquo;</a>
+            <?php
+            for ($i = 1; $i <= $pageCount; $i++) {
+                if (isset($_GET['page'])) {
+                    if ($i == $_GET['page']) { ?>
+                        <a class="active" href="index.php?page=<?= $i ?>"><?= $i ?></a>
+                    <?php } else { ?>
+                        <a href="index.php?page=<?= $i ?>"><?= $i ?></a>
+                    <?php  }
+                } else {
+                    if ($i == 1) { ?>
+                        <a class="active" href="index.php?page=<?= $i ?>"><?= $i ?></a>
+                    <?php  } else { ?>
+                        <a href="index.php?page=<?= $i ?>"><?= $i ?></a>
+                    <?php   } ?>
+                <?php  } ?>
+            <?php }
+            ?>
+            <a href="index.php?page=<?= (isset($_GET['page'])) ? $_GET['page'] + 1 : 2 ?>">&raquo;</a>
+        </div>
     <?php
        include('inc/footer.php');
     ?>

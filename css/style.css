@@ -144,8 +144,11 @@ a:hover {
   text-align: center;
 }
 
-.productName a{
+.productName a h3{
   color: #6b00a8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .container .card .content .price{
@@ -285,8 +288,8 @@ footer .copyright{
 }
 
 .image-product img{
-  height: 320px;
-  width: 572px;
+  height: auto;
+  width: 400px;
 }
 
 .name{

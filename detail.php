@@ -54,7 +54,10 @@ if (!$result) {
             <?php }
             ?>
             <div class="des">
-                <p>Đã bán: <?= $result['soldCount'] ?></p>
+                    <ul>
+                    <li>Đã bán: <?= $result['soldCount'] ?></li>
+                    <li>Số lượng còn lại: <?= $result['qty'] ?></li>
+                </ul>
                 <?= $result['des'] ?>
             </div>
             <div class="add-cart-single">

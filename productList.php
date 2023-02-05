@@ -34,24 +34,24 @@ $categoriesList = $categories->getAll();
     <header>
         <label class="logo">
             <a href="index.php">
-                <img  src="images/logo.jpg"  alt="logo">
-            </a>          
+                <img src="images/logo.jpg" alt="logo">
+            </a>
         </label>
         <div class="search">
             <form action="search.php" method="get">
                 <input type="text" name="search" placeholder="Nhập tên sản phẩm">
-                <input type="submit" name="ok" value="search" >
+                <input type="submit" name="ok" value="search">
             </form>
         </div>
         <ul>
-            <li><a href="index.php" >Trang chủ</a></li>
+            <li><a href="index.php">Trang chủ</a></li>
             <li><a href="productList.php" class="active">Sản phẩm</a></li>
             <?php
             if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
-                <li><a href="logout.php" id="signin">Đăng xuất</a></li>
+            <li><a href="logout.php" id="signin">Đăng xuất</a></li>
             <?php } else { ?>
-                <li><a href="register.php" id="signup">Đăng ký</a></li>
-                <li><a href="login.php" id="signin">Đăng nhập</a></li>
+            <li><a href="register.php" id="signup">Đăng ký</a></li>
+            <li><a href="login.php" id="signin">Đăng nhập</a></li>
             <?php } ?>
             <li><a href="order.php" id="order">Đơn hàng</a></li>
             <li>
@@ -73,10 +73,10 @@ $categoriesList = $categories->getAll();
             <?php
             foreach ($categoriesList as $key => $value) {
                 if ($value['id'] == $_GET['cateId']) { ?>
-                    <option selected value="productList.php?cateId=<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                <?php } else { ?>
-                    <option value="productList.php?cateId=<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                <?php } ?>
+            <option selected value="productList.php?cateId=<?= $value['id'] ?>"><?= $value['name'] ?></option>
+            <?php } else { ?>
+            <option value="productList.php?cateId=<?= $value['id'] ?>"><?= $value['name'] ?></option>
+            <?php } ?>
             <?php }
             ?>
         </select>
@@ -84,31 +84,32 @@ $categoriesList = $categories->getAll();
     <div class="container">
         <?php if ($list) {
             foreach ($list as $key => $value) { ?>
-                <div class="card">
-                    <div class="imgBx">
-                        <a href="detail.php?id=<?= $value['id'] ?>"><img src="admin/uploads/<?= $value['image'] ?>" alt=""></a>
-                    </div>
-                    <div class="content">
-                        <div class="productName">
-                            <a href="detail.php?id=<?= $value['id'] ?>">
-                                <h3><?= $value['name'] ?></h3>
-                            </a>
-                        </div>
-                        <div>
-                            Đã bán: <?= $value['soldCount'] ?>
-                        </div>
-                        <div class="original-price">
-                            <?php
+        <div class="card">
+            <div class="imgBx">
+                <a href="detail.php?id=<?= $value['id'] ?>"><img src="admin/uploads/<?= $value['image'] ?>" alt=""></a>
+            </div>
+            <div class="content">
+                <div class="productName">
+                    <a href="detail.php?id=<?= $value['id'] ?>">
+                        <h3><?= $value['name'] ?></h3>
+                    </a>
+                </div>
+                <ul>
+                    <li>Đã bán: <?= $value['soldCount'] ?></li>
+                    <li>Số lượng còn lại: <?= $value['qty'] ?></li>
+                </ul>
+                <div class="original-price">
+                    <?php
                             if ($value['promotionPrice'] < $value['originalPrice']) { ?>
-                                Giá gốc: <del><?= number_format($value['originalPrice'], 0, '', ',') ?>VND</del>
-                            <?php } else { ?>
-                                <p>.</p>
-                            <?php } ?>
-                        </div>
-                        <div class="price">
-                            Giá bán: <?= number_format($value['promotionPrice'], 0, '', ',') ?>VND
-                        </div>
-                        <!-- <div class="rating">
+                    Giá gốc: <del><?= number_format($value['originalPrice'], 0, '', ',') ?>VND</del>
+                    <?php } else { ?>
+                    <p>.</p>
+                    <?php } ?>
+                </div>
+                <div class="price">
+                    Giá bán: <?= number_format($value['promotionPrice'], 0, '', ',') ?>VND
+                </div>
+                <!-- <div class="rating">
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -117,34 +118,39 @@ $categoriesList = $categories->getAll();
                                 <i class="fa fa-star"></i>
                             </div>
                         </div> -->
-                        <div class="action">
-                            <a class="add-cart" href="add_cart.php?id=<?= $value['id'] ?>">Thêm vào giỏ</a>
-                            <a class="detail" href="detail.php?id=<?= $value['id'] ?>">Xem chi tiết</a>
-                        </div>
-                    </div>
+                <div class="action">
+                    <a class="add-cart" href="add_cart.php?id=<?= $value['id'] ?>">Thêm vào giỏ</a>
+                    <a class="detail" href="detail.php?id=<?= $value['id'] ?>">Xem chi tiết</a>
                 </div>
-            <?php }
+            </div>
+        </div>
+        <?php }
         }else { ?>
-            <h3>Không có sản phẩm nào...</h3>
+        <h3>Không có sản phẩm nào...</h3>
         <?php  }
         ?>
     </div>
     <div class="pagination">
-        <a href="productList.php?page=<?= (isset($_GET['page'])) ? (($_GET['page'] <= 1) ? 1 : $_GET['page'] - 1) : 1 ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>">&laquo;</a>
+        <a
+            href="productList.php?page=<?= (isset($_GET['page'])) ? (($_GET['page'] <= 1) ? 1 : $_GET['page'] - 1) : 1 ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>">&laquo;</a>
         <?php
         for ($i = 1; $i <= $pageCount; $i++) {
             if (isset($_GET['page'])) {
                 if ($i == $_GET['page']) { ?>
-                    <a class="active" href="productList.php?page=<?= $i ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>"><?= $i ?></a>
-                <?php } else { ?>
-                    <a href="productList.php?page=<?= $i ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>"><?= $i ?></a>
-                <?php  }
+        <a class="active"
+            href="productList.php?page=<?= $i ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>"><?= $i ?></a>
+        <?php } else { ?>
+        <a
+            href="productList.php?page=<?= $i ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>"><?= $i ?></a>
+        <?php  }
             } else { ?>
-                <a href="productList.php?page=<?= $i ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>"><?= $i ?></a>
-            <?php  } ?>
+        <a
+            href="productList.php?page=<?= $i ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>"><?= $i ?></a>
+        <?php  } ?>
         <?php }
         ?>
-        <a href="productList.php?page=<?= (isset($_GET['page'])) ? $_GET['page'] + 1 : 2 ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>">&raquo;</a>
+        <a
+            href="productList.php?page=<?= (isset($_GET['page'])) ? $_GET['page'] + 1 : 2 ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>">&raquo;</a>
     </div>
     <?php 
         include('inc/footer.php'); 

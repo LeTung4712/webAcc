@@ -64,17 +64,17 @@ class user
 				$mail->SMTPDebug  = 0;
 				$mail->SMTPAuth   = TRUE;
 				$mail->SMTPSecure = "tls";
-				$mail->Port       = 587;
+				$mail->Port       = "587";
 				$mail->Host       = "smtp.gmail.com";
-				$mail->Username   = "khuongip564gb@gmail.com";
-				$mail->Password   = "googlekhuongip564gb";
+				$mail->Username   = "iamrobotdiy@gmail.com";
+				$mail->Password   = "QUYNHMAI2282001";
 
 				$mail->IsHTML(true);
 				$mail->CharSet = 'UTF-8';
 				$mail->AddAddress($email, "recipient-name");
-				$mail->SetFrom("khuongip564gb@gmail.com", "Instrument Store");
-				$mail->Subject = "Xác nhận email tài khoản - Instruments Store";
-				$mail->Body = "<h3>Cảm ơn bạn đã đăng ký tài khoản tại website InstrumentStore</h3></br>Đây là mã xác minh tài khoản của bạn: " . $captcha . "";
+				$mail->SetFrom("iamrobotdiy@gmail.com", "LMHT Store");
+				$mail->Subject = "Xác nhận email tài khoản - lmht store";
+				$mail->Body = "<h3>Cảm ơn bạn đã đăng ký tài khoản tại website LMHTStore</h3></br>Đây là mã xác minh tài khoản của bạn: " . $captcha . "";
 
 				$mail->Send();
 
