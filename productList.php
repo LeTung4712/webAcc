@@ -6,6 +6,7 @@ include_once 'classes/cart.php';
 
 $cart = new cart();
 $totalQty = $cart->getTotalQtyByUserId();
+$countCart = $cart->getCountCart();
 
 $product = new product();
 $list = $product->getProductsByCateId((isset($_GET['page']) ? $_GET['page'] : 1), (isset($_GET['cateId']) ? $_GET['cateId'] : 2));
@@ -60,7 +61,7 @@ $categoriesList = $categories->getAll();
                 <a href="checkout.php">
                     <i class="fa fa-shopping-bag"></i>
                     <span class="sumItem">
-                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
+                        <?= ($countCart['cont']) ? $countCart['cont'] : "0" ?>
                     </span>
                 </a>
             </li>
@@ -111,18 +112,9 @@ $categoriesList = $categories->getAll();
                 <div class="price">
                     Giá bán: <?= number_format($value['promotionPrice'], 0, '', ',') ?>VND
                 </div>
-                <!-- <div class="rating">
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div> -->
                 <div class="action">
                     <a class="add-cart" href="add_cart.php?id=<?= $value['id'] ?>">Thêm vào giỏ</a>
-                    <a class="detail" href="detail.php?id=<?= $value['id'] ?>">Xem chi tiết</a>
+                    <a class="detail" href="buy_now.php?id=<?= $value['id'] ?>">Mua ngay</a>
                 </div>
             </div>
         </div>

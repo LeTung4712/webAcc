@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <textarea name="address" id="address" cols="30" rows="5" placeholder="Cũng là địa chỉ nhận hàng " required></textarea>
 
                 <label for="dob">Ngày sinh</label>
-                <input type="date" name="dob" id="dob" required>com
+                <input type="date" name="dob" id="dob" required>
 
                 <input type="submit" value="Đăng ký" name="submit">
             </form>

@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <li><a href="login.php" id="signin" class="active">Đăng nhập</a></li>
             <li><a href="order.php" id="order">Đơn hàng</a></li>
             <li>
-                <a href="checkout.html">
+                <a href="checkout.php">
                     <i class="fa fa-shopping-bag"></i>
                     <span class="sumItem">
                         0
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div class="container-single">
         <div class="login">
-            <form action="login.php" method="post" class="form-login">
+            <form action="login.php " method="post" class="form-login">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Email..." required>
 

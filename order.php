@@ -6,6 +6,7 @@ include_once 'classes/cart.php';
 
 $cart = new cart();
 $totalQty = $cart->getTotalQtyByUserId();
+$countCart = $cart->getCountCart();
 
 $order = new order();
 $result = $order->getOrderByUser();
@@ -56,7 +57,7 @@ $result = $order->getOrderByUser();
                 <a href="checkout.php">
                     <i class="fa fa-shopping-bag"></i>
                     <span class="sumItem">
-                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
+                        <?= ($countCart['cont']) ? $countCart['cont'] : "0" ?>
                     </span>
                 </a>
             </li>

@@ -94,7 +94,7 @@ $list = mysqli_fetch_all($product->getSaleProducts(), MYSQLI_ASSOC);
                 </div>
                 <div class="action">
                     <a class="add-cart" href="add_cart.php?id=<?= $value['id'] ?>">Thêm vào giỏ</a>
-                    <a class="detail" href="detail.php?id=<?= $value['id'] ?>">Xem chi tiết</a>
+                    <a class="detail" href="buy_now.php?id=<?= $value['id'] ?>">Mua ngay</a>
                 </div>
             </div>
         </div>

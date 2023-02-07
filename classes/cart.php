@@ -116,5 +116,16 @@ class cart
         }
         return false;
     }
+
+    public function getCountCart()
+    {
+        $query = "SELECT COUNT(id) as cont FROM cart ";
+        $mysqli_result = $this->db->select($query);
+        if ($mysqli_result) {
+            $result = mysqli_fetch_all($this->db->select($query), MYSQLI_ASSOC)[0];
+            return $result;
+        }
+        return false;
+    }
 }
 ?>

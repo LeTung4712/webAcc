@@ -5,6 +5,7 @@ include_once 'classes/cart.php';
 
 $cart = new cart();
 $totalQty = $cart->getTotalQtyByUserId();
+$countCart = $cart->getCountCart();
 
 $product = new product();
 $list = mysqli_fetch_all($product->getFeaturedProducts((isset($_GET['page']) ? $_GET['page'] : 1)), MYSQLI_ASSOC);
@@ -66,7 +67,7 @@ $pageCount = $product->getCountPaging();
                 </div>
                 <div class="action">
                     <a class="add-cart" href="add_cart.php?id=<?= $value['id'] ?>">Thêm vào giỏ</a>
-                    <a class="detail" href="detail.php?id=<?= $value['id'] ?>">Xem chi tiết</a>
+                    <a class="detail" href="buy_now.php?id=<?= $value['id'] ?>">Mua Ngay</a>
                 </div>
             </div>
 

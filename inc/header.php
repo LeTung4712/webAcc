@@ -22,12 +22,13 @@
                 <li><a href="register.php" id="signup">Đăng ký</a></li>
                 <li><a href="login.php" id="signin">Đăng nhập</a></li>
             <?php } ?>
+            
             <li><a href="order.php" id="order">Đơn hàng</a></li>
             <li>
                 <a href="checkout.php">
                     <i class="fa fa-shopping-bag"></i>
                     <span class="sumItem">
-                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
+                        <?= ($countCart['cont']) ? $countCart['cont'] : "0" ?>
                     </span>
                 </a>
             </li>

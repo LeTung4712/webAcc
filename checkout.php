@@ -8,7 +8,7 @@ $cart = new cart();
 $list = $cart->get();
 $totalPrice = $cart->getTotalPriceByUserId();
 $totalQty = $cart->getTotalQtyByUserId();
-
+$countCart = $cart->getCountCart();
 $user = new user();
 $userInfo = $user->get();
 ?>
@@ -28,7 +28,7 @@ $userInfo = $user->get();
 </head>
 
 <body>
-<header>
+    <header>
         <label class="logo">
             <a href="index.php">
                 <img  src="images/logo.jpg"  alt="logo">
@@ -43,8 +43,8 @@ $userInfo = $user->get();
             </form>
         </div>
         <ul>
-            <li><a href="index.php" >Trang chủ</a></li>
-            <li><a href="productList.php" >Sản phẩm</a></li>
+            <li><a href="index.php">Trang chủ</a></li>
+            <li><a href="productList.php">Sản phẩm</a></li>
             <?php
             if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
                 <li><a href="logout.php" id="signin">Đăng xuất</a></li>
@@ -56,8 +56,8 @@ $userInfo = $user->get();
             <li>
                 <a href="checkout.php" class="active">
                     <i class="fa fa-shopping-bag"></i>
-                    <span class="sumItem">
-                        <?= ($totalQty['total']) ? $totalQty['total'] : "0" ?>
+                    <span class="sumItem" id="totalQtyHeader">
+                        <?= $countCart['cont'] ?>
                     </span>
                 </a>
             </li>
@@ -70,64 +70,59 @@ $userInfo = $user->get();
     <div class="container-single">
         <?php
         if ($list) { ?>
-        <table class="order">
-            <tr>
-                <th>STT</th>
-                <th>Tên sản phẩm</th>
-                <th>Hình ảnh</th>
-                <th>Đơn giá</th>
-                <th>Số lượng</th>
-                <th>Thao tác</th>
-            </tr>
-            <?php
+            <table class="order">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Thao tác</th>
+                </tr>
+                <?php
                 $count = 1;
                 foreach ($list as $key => $value) { ?>
-            <tr>
-                <td><?= $count++ ?></td>
-                <td><?= $value['productName'] ?></td>
-                <td><img class="image-cart" src="admin/uploads/<?= $value['productImage'] ?>"></td>
-                <td><?= number_format($value['productPrice'], 0, '', ',') ?>VND </td>
-                <td>
-                    <input id="<?= $value['productId'] ?>" type="number" name="qty" class="qty"
-                        value="<?= $value['qty'] ?>" onchange="update(this)" min="1">
-                </td>
-                <td>
-                    <a href="delete_cart.php?id=<?= $value['id'] ?>">Xóa</a>
-                </td>
-            </tr>
-            <?php }
+                    <tr>
+                        <td><?= $count++ ?></td>
+                        <td><?= $value['productName'] ?></td>
+                        <td><img class="image-cart" src="admin/uploads/<?= $value['productImage'] ?>"></td>
+                        <td><?= number_format($value['productPrice'], 0, '', ',') ?>VND </td>
+                        <td>
+                            <input id="<?= $value['productId'] ?>" type="number" name="qty" class="qty" value="<?= $value['qty'] ?>" onchange="update(this)" min="1">
+                        </td>
+                        <td>
+                            <a href="delete_cart.php?id=<?= $value['id'] ?>">Xóa</a>
+                        </td>
+                    </tr>
+                <?php }
                 ?>
-        </table>
-        <div class="orderinfo">
-            <div class="buy">
-                <h3>Thông tin đơn đặt hàng</h3>
-                <div>
-                    Người đặt hàng: <b><?= $userInfo['fullname'] ?></b>
-                </div>
-                <div>
-                    Email Người đặt hàng: <br><b><?= $userInfo['email'] ?></b>
-                </div>
-                <div>
-                    Số lượng: <b id="qtycart"><?= $totalQty['total'] ?></b>
-                </div>
-                <div>
-                    Tổng tiền: <b id="totalcart"><?= number_format($totalPrice['total'], 0, '', ',') ?>VND</b>
-                </div>
-                <div>
-                    Địa chỉ nhận hàng: <b><?= $userInfo['address'] ?></b>
-                </div>
-                <div class="buy-btn">
-                    <a href="add_order.php?id=<?= $value['productId'] ?>">Tiến hành đặt hàng</a>
+            </table>
+            <div class="orderinfo">
+                <div class="buy">
+                    <h3>Thông tin đơn đặt hàng</h3>
+                    <div>
+                        Người đặt hàng: <b><?= $userInfo['fullname'] ?></b>
+                    </div>
+                    <div>
+                        Số lượng: <b id="qtycart"><?= $totalQty['total'] ?></b>
+                    </div>
+                    <div>
+                        Tổng tiền: <b id="totalcart"><?= number_format($totalPrice['total'], 0, '', ',') ?>VND</b>
+                    </div>
+                    <div>
+                        Địa chỉ nhận hàng: <b><?= $userInfo['address'] ?></b>
+                    </div>
+                    <div class="buy-btn">
+                        <a href="add_order.php">Tiến hành đặt hàng</a>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php } else { ?>
-        <h3>Giỏ hàng hiện đang rỗng</h3>
+            <h3>Giỏ hàng hiện đang rỗng</h3>
         <?php }
         ?>
     </div>
     </div>
-
     <?php
        include('inc/footer.php');
     ?>
@@ -141,7 +136,7 @@ $userInfo = $user->get();
 
         http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-        http.onreadystatechange = function () {
+        http.onreadystatechange = function() {
             if (http.readyState === XMLHttpRequest.DONE) {
                 var status = http.status;
                 if (status === 200) {
@@ -158,10 +153,8 @@ $userInfo = $user->get();
                     }
                     var arrResult = JSON.parse(result.replace("undefined", ""));
                     console.log(arrResult);
-                    document.getElementById("totalQtyHeader").innerHTML = arrResult[1]['total'];
                     document.getElementById("qtycart").innerHTML = arrResult[1]['total'];
-                    document.getElementById("totalcart").innerHTML = arrResult[0]['total'].replace(
-                        /(\d)(?=(\d{3})+(?!\d))/g, "$1,") + "VND";
+                    document.getElementById("totalcart").innerHTML = arrResult[0]['total'].replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + "VND";
 
                     //alert('Đã cập nhật giỏ hàng!');
                 } else if (status === 501) {
@@ -179,7 +172,7 @@ $userInfo = $user->get();
 
     var list = document.getElementsByClassName("qty");
     for (let item of list) {
-        item.addEventListener("keypress", function (evt) {
+        item.addEventListener("keypress", function(evt) {
             evt.preventDefault();
         });
     }
